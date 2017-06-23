@@ -1,0 +1,27 @@
+#!/bin/bash
+
+mvn -v
+if [ $? != 0 ]
+then
+    wget https://archive.apache.org/dist/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz
+    tar -xzf apache-maven-3.1.1-bin.tar.gz -C /etc
+    ln -s /etc/apache-maven-3.1.1/bin/mvn /usr/bin/mvn
+    mvn -v
+    rm -rf apache-maven-3.1.1*
+fi
+
+props=$(find src -name "*.properties")
+
+{%if ( pillar['mode'] == 'production'  ) %}
+   sed -i 's|redis.host=.*|redis.host='{{ pillar['redis']['production'] }}'|g' $props
+{% else %}
+   sed -i 's|redis.host=.*|redis.host='{{ pillar['redis']['staging'] }}'|g' $props
+{%endif%}
+
+mvn clean package
+
+warfile=$(find . -name "*.war")
+cp $warfile /var/lib/tomcat7/webapps/.
+
+
+
