@@ -138,19 +138,32 @@ Total run time:   4.707 s
 Test click-count web app
 
 ```
-#curl http://localhost:8080/clickCount/rest/click
-22
+# sudo pip install virtualenv
+# cd tests
 
+# mkdir venv
 
-#curl http://localhost:8080/clickCount/rest/healthcheck
-ok
+# virtualenv  venv/
+# source venv/bin/activate
 
+(venv) # pip install -r requirements.txt
 
-#curl -X POST  http://localhost:8080/clickCount/rest/click
-23
+(venv) # py.test -v
 
-#curl http://localhost:8080/clickCount/rest/click
-23
+=========================================================================================== test session starts ============================================================================================
+platform linux2 -- Python 2.7.12, pytest-3.0.6, py-1.4.32, pluggy-0.4.0 -- /usr/bin/python
+cachedir: .cache
+rootdir: /home/abdou/Documents/tutos/click-count/tests, inifile: 
+collected 2 items 
+
+test_deployment.py::TestCandidate::test_healthcheck PASSED
+test_deployment.py::TestCandidate::test_new_click PASSED
+
+========================================================================================= 2 passed in 0.20 seconds =========================================================================================
+
+(venv) # deactivate
+
+#
 
 ```
 
@@ -278,19 +291,35 @@ Total run time:   4.829 s
 Test click-count in production mode
 
 ```
-#curl http://localhost:8080/clickCount/rest/click
-0
+
+# sudo pip install virtualenv
+# cd tests
+
+# mkdir venv
+
+# virtualenv  venv/
+# source venv/bin/activate
+
+(venv) # pip install -r requirements.txt
+
+(venv) # py.test -v
+
+=========================================================================================== test session starts ============================================================================================
+platform linux2 -- Python 2.7.12, pytest-3.0.6, py-1.4.32, pluggy-0.4.0 -- /usr/bin/python
+cachedir: .cache
+rootdir: /home/abdou/Documents/tutos/click-count/tests, inifile: 
+collected 2 items 
+
+test_deployment.py::TestCandidate::test_healthcheck PASSED
+test_deployment.py::TestCandidate::test_new_click PASSED
+
+========================================================================================= 2 passed in 0.20 seconds =========================================================================================
+
+(venv) # deactivate
+
+#
 
 
-#curl http://localhost:8080/clickCount/rest/healthcheck
-ok
-
-
-#curl -X POST  http://localhost:8080/clickCount/rest/click
-1
-
-#curl http://localhost:8080/clickCount/rest/click
-1
 ```
 
 
