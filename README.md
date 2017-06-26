@@ -6,7 +6,7 @@ Table of contents
 =================
 
   * [How to setup environment](#setup)
-  * [CI/CD pipeline](#cicd)
+  * [CI/CD pipeline](#ci/cd)
   * [How to debug pipeline](#debug)
 
 
@@ -50,7 +50,7 @@ local:
 
 ```
 
-CI_CD
+CI/CD
 -----
 
 Build and install click-count web app in staging mode and validate.
