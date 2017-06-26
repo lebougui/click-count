@@ -2,14 +2,28 @@
 import requests
 import pytest 
 import logging 
+import sys 
 
 
-class TestCandidate:
+class TestClickCount:
     """
     Main class that contains all the tests collected by pytest.
     """
  
  # Setup and teardown methods
+    def log(self, msg, level=1):
+        DEBUG = 0
+        INFO = 1
+        WARN = 2
+        ERROR = 3
+
+        msg = ["DEBUG : ", "INFO : ", "WARN : ", "ERROR : "][level] + str(msg)
+        if level in [WARN, ERROR]:
+            out = sys.stderr
+        else:
+            out = sys.stdout
+        print >> out, msg
+
     def setup_class(self):
         """
         Method that will be called by pytest before launching the first test. As a test class cannot have any __init__
@@ -17,6 +31,8 @@ class TestCandidate:
         performs initializations.
         """
         self.clickcount_base_url = "http://localhost:8080/clickCount/rest"
+
+
 
     ##############################
     #      Tests methods         #
@@ -32,6 +48,7 @@ class TestCandidate:
         """
         url = self.clickcount_base_url + "/healthcheck"
         http_response = requests.get(url)
+        self.log("REQUEST : " + url)
         assert http_response.status_code == 200
         assert 'ok' in http_response.text
 
@@ -48,11 +65,13 @@ class TestCandidate:
         """
         url = self.clickcount_base_url + "/click"
         http_response = requests.get(url)
+        self.log("GET REQUEST : " + url)
         assert http_response.status_code == 200
         assert http_response.text
         current_value = int(http_response.text)
 
         http_response = requests.post(url)
+        self.log("POST REQUEST : " + url)
         assert http_response.status_code == 200
         assert http_response.text
         new_value = int(http_response.text)

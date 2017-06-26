@@ -1,7 +1,7 @@
 
 clickount.deploy.script:
   file.managed:
-    - name: /srv/salt/clickcount/click-count/deploy.sh
+    - name: /srv/salt/clickcount/sources/deploy.sh
     - source: salt://clickcount/deploy.skel
     - template: jinja
 
@@ -19,5 +19,5 @@ clickcount.deploy:
           chmod +x deploy.sh
           ./deploy.sh
 
-    - cwd:  /srv/salt/clickcount/click-count
+    - cwd:  /srv/salt/clickcount/sources
 
