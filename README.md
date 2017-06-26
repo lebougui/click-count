@@ -1,3 +1,38 @@
+# Click count
+
+Click count salt tree for automatic build, deploy and validate pipeline.
+
+Table of contents
+=================
+
+  * [How to setup environment](#setup)
+  * [CI/CD pipeline](#cicd)
+  * [How to debug pipeline](#debug)
+
+
+
+Setup
+-----
+
+Install salt utils
+
+```
+curl -L https://bootstrap.saltstack.com -o bootstrap_salt.sh
+sh bootstrap_salt.sh
+
+```
+
+In a masterless environment we do not need a salt-master. 
+As we don't have a salt-master we do not need to start the start-minion daemon. salt-minion daemon must be stopped.
+
+```
+# service salt-minion status
+... running
+
+# service salt-minion stop
+# chkconfig salt-minion off
+
+```
 
 Get salt pillars
 
@@ -15,9 +50,14 @@ local:
 
 ```
 
+CI_CD
+-----
+
 Build and install click-count web app in staging mode and validate.
-If tests are successfull install click-count web app in production mode.
+If validation is successfull install click-count web app in production mode.
 Otherwise abort the installation.
+
+Validation is peformed using python tests in a virtualenv.
 
 ```
 # sudo salt-call --local  state.apply -l debug 
@@ -144,6 +184,9 @@ Total run time:  22.706 s
 
 
 ```
+
+Debug
+-----
 
 When validation tests fail pytests will dump logs for debug purpose.
 

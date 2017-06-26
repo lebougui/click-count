@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Check if maven is intalled.
+#Install it if not found
 mvn -v
 if [ $? != 0 ]
 then
@@ -10,15 +12,22 @@ then
     rm -rf apache-maven-3.1.1*
 fi
 
+#Update config.properties with staging redis server.
 props=$(find src -name "*.properties")
 
 sed -i 's|redis.host=.*|redis.host='{{ pillar['redis']['staging'] }}'|g' $props
 
+#Build web app in staging mode
 mvn clean package
 
+#Copy warfile into /var/lib/tomcat7/webapps tomcat container 
 warfile=$(find . -name "*.war")
 cp $warfile /var/lib/tomcat7/webapps/.
 
+#Wait for war file deployment by tomcat
+sleep 5
+
+#Setup and run python validation tests
 pip install virtualenv
 cd tests
 
@@ -33,10 +42,14 @@ py.test -v
 
 if [ "$?" != 0 ]
 then
+    #Exit if tests fail.
     exit -1
 fi
 
+#Python validation tests are successfully.
+#Install web app in production mode
 deactivate
+rm -rf venv
 
 cd -
 sed -i 's|redis.host=.*|redis.host='{{ pillar['redis']['production'] }}'|g' $props
