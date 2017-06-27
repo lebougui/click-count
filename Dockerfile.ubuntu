@@ -1,0 +1,18 @@
+from ubuntu
+
+
+RUN apt-get update && \
+    apt-get install -y wget && \
+    wget https://bootstrap.saltstack.com -O /tmp/bootstrap_salt.sh && \
+    chmod +x /tmp/bootstrap_salt.sh && \
+    /tmp/bootstrap_salt.sh && \
+    mkdir -p /srv && \
+    service salt-minion stop && \
+    apt-get autoremove
+
+
+COPY pillar /srv/pillar
+COPY salt /srv/salt
+
+
+#ENTRYPOINT salt-call --local  state.apply -l debug 

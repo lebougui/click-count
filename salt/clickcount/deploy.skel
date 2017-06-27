@@ -25,10 +25,11 @@ warfile=$(find . -name "*.war")
 cp $warfile /var/lib/tomcat7/webapps/.
 
 #Wait for war file deployment by tomcat
-sleep 5
+sleep 10
 
 #Setup and run python validation tests
-pip install virtualenv
+pip install --upgrade pip 
+pip install --upgrade virtualenv
 cd tests
 
 mkdir venv
