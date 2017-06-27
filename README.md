@@ -14,7 +14,7 @@ Table of contents
 =================
 
   * [1. Setup environment](#setup)
-  * [2. CI/CD pipeline execution example](#Pipeline)
+  * [2. CI/CD pipeline execution example](#pipeline)
   * [3. How to debug pipeline](#debug)
   * [4. How to test pipeline using a configured ubuntu docker container](#container)
 
