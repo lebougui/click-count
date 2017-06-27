@@ -1,5 +1,6 @@
 # Click count
 
+
 Click count pipeline.
 We use salt tree states for pipeline automation.
 Pipeline steps are described below :
@@ -8,6 +9,8 @@ Pipeline steps are described below :
   - If validation is successfull install click-count web app in production mode.
   - Otherwise abort the installation.
 
+If an issue occurs during the pipeline exection you can validate steps using a docker container.
+
 
 Table of contents
 =================
@@ -15,8 +18,6 @@ Table of contents
   * [1. Setup environment](#setup)
   * [2. CI/CD pipeline execution example](#pipeline)
   * [3. How to debug pipeline](#debug)
-  * [4. How to test pipeline using a configured ubuntu docker container](#container)
-
 
 
 Setup
@@ -331,9 +332,8 @@ INFO : GET REQUEST : http://localhost:8080/clickCount/rest/click
 
 ```
 
-Container
----------
-In order to validate the pipeline steps and tools installation you can use a docker container.
+
+In order to debug the pipeline steps and tools installation you can use a docker container.
 docker must be installed and running.
 
 ```
