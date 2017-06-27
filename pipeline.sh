@@ -7,6 +7,21 @@ systemctl stop salt-minion
 
 cp -rvf * /srv/.
 
-salt-call --local pillar.items
+salt-call --local pillar.items --retcode-passthrough && 
+if [ "$?" == 0 ] 
+then
+    echo "pillars ok"
+else
+    echo "pillars error !"
+    exit -1
+fi
 
-salt-call --local  state.apply -l debug
+salt-call --local  state.apply -l debug --retcode-passthrough
+if [ "$?" == 0 ] 
+then
+    echo "pipeline execution ok"
+else
+    echo "pipeline execution error !"
+    exit -1
+fi
+

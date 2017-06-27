@@ -19,60 +19,20 @@ If an issue occurs during the pipeline execution you can validate steps using an
 Table of contents
 =================
 
-  * [1. Setup environment](#setup)
-  * [2. CI/CD pipeline execution example](#pipeline)
-  * [3. How to debug pipeline](#debug)
+  * [1. CI/CD pipeline execution ](#pipeline)
+  * [2. How to debug pipeline](#debug)
 
-
-Setup
------
-
-Install salt utils
-
-```
-curl -L https://bootstrap.saltstack.com -o bootstrap_salt.sh
-sh bootstrap_salt.sh
-
-```
-
-We use salt in masterless mode. 
-salt-minion daemon must be stopped if running.
-
-```
-# systemctl status salt-minion
-● salt-minion.service - The Salt Minion
-   Loaded: loaded (/lib/systemd/system/salt-minion.service; enabled; vendor pres
-   Active: active (running) since Mon 2017-03-27 13:17:00 CEST; 3 months 0 days 
- Main PID: 913 (salt-minion)
- ...
-
-# systemctl stop salt-minion
-
-```
 
 Pipeline 
 --------
-Please make sure salt is correctly installed first.
-Copy this repo tree into salt base folder (default is /srv).
-
-Get salt pillars to validate the environment :
+Execute pipeline script :
 
 ```
-#sudo salt-call --local pillar.items
 
-local:
-    ----------
-    redis:
-        ----------
-        production:
-            35.158.164.55
-        staging:
-            35.157.234.38
-```
+# sudo bash -x ./pipeline.sh
 
-Then execute pipeline steps :
-```
-# sudo salt-call --local  state.apply -l debug 
+...
+
 
 local:
 ----------
