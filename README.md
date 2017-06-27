@@ -9,7 +9,9 @@ Pipeline steps are described below :
   - If validation is successfull install click-count web app in production mode.
   - Otherwise abort the installation.
 
-If an issue occurs during the pipeline exection you can validate steps using a docker container.
+Pipeline validated on Ubuntu 16 and CentOS 7.
+
+If an issue occurs during the pipeline exection you can validate steps using an ubuntu docker container.
 
 
 Table of contents
@@ -64,8 +66,10 @@ local:
             35.158.164.55
         staging:
             35.157.234.38
+```
 
-
+Then execute pipeline steps :
+```
 # sudo salt-call --local  state.apply -l debug 
 
 local:
