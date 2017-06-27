@@ -1,17 +1,19 @@
 # Click count
 
 
-Click count pipeline.
-We use salt tree states for pipeline automation.
+Salt tree states for click count web app pipeline automation.
+
 Pipeline steps are described below :
+- Install dependencies : java 8 and maven (if not found).
+- Install (if not found) and start tomcat servlet container (if not running)
 - Build and install click-count web app in staging mode and validate.
-  Validation is peformed using pytests script in a virtualenv.
+  Validation is peformed using python pytests script in a virtualenv.
   - If validation is successfull install click-count web app in production mode.
   - Otherwise abort the installation.
 
-Pipeline validated on Ubuntu 16 and CentOS 7.
+Pipeline steps has been tested on Ubuntu 16 and CentOS 7.
 
-If an issue occurs during the pipeline exection you can validate steps using an ubuntu docker container.
+If an issue occurs during the pipeline execution you can validate steps using an ubuntu docker container.
 
 
 Table of contents
