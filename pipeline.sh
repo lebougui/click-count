@@ -5,6 +5,8 @@ chmod +x /tmp/bootstrap_salt.sh
 
 systemctl stop salt-minion
 
+cp -rvf * /srv/.
+
 salt-call --local pillar.items
 
 salt-call --local  state.apply -l debug
