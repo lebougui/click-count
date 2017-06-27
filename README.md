@@ -5,9 +5,8 @@ We use salt tree states for pipeline automation.
 Pipeline steps are described below :
 - Build and install click-count web app in staging mode and validate.
   Validation is peformed using pytests script in a virtualenv.
-
-- If validation is successfull install click-count web app in production mode.
-  Otherwise abort the installation.
+  - If validation is successfull install click-count web app in production mode.
+  - Otherwise abort the installation.
 
 
 Table of contents
@@ -332,17 +331,14 @@ INFO : GET REQUEST : http://localhost:8080/clickCount/rest/click
 
 ```
 
-Containers
-----------
-docker must be installed first and docker daemon must be running
+Container
+---------
+In order to validate the pipeline steps and tools installation you can use a docker container.
+docker must be installed and running.
 
 ```
 # docker build -t click_count:ubuntu -f Dockerfile.ubuntu .
 
-```
-
-
-```
 # docker run --privileged --rm -it click_count:ubuntu salt-call --local  state.apply -l debug
 
 ```
