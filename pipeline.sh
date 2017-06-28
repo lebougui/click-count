@@ -7,7 +7,7 @@ systemctl stop salt-minion
 
 cp -rvf * /srv/.
 
-salt-call --local pillar.items --retcode-passthrough && 
+salt-call --local pillar.items --retcode-passthrough
 if [ "$?" == 0 ] 
 then
     echo "pillars ok"
@@ -16,7 +16,7 @@ else
     exit -1
 fi
 
-salt-call --local  state.apply -l debug --retcode-passthrough
+salt-call --local  state.apply clickcount -l debug --retcode-passthrough
 if [ "$?" == 0 ] 
 then
     echo "pipeline execution ok"
