@@ -12,9 +12,9 @@ Pipeline steps are described below :
   - If validation is successfull install click-count web app in production mode.
   - Otherwise abort the installation.
 
-Pipeline steps has been tested on Ubuntu 16 and CentOS 7.
+Pipeline steps have been tested on Ubuntu 16 and CentOS 7.
 
-If an issue occurs during the pipeline execution you can validate steps using an ubuntu docker container.
+If an issue occurs during the pipeline execution you can validate steps using an Ubuntu 16 docker container.
 
 
 Table of contents
