@@ -4,6 +4,7 @@
 Salt tree states for click count web app pipeline automation.
 
 Pipeline steps are described below :
+- Install salt utils (if not found).
 - Install dependencies : java 8 and maven (if not found).
 - Install (if not found) and start tomcat servlet container (if not running)
 - Build and install click-count web app in staging mode and validate.
