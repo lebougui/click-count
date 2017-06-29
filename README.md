@@ -14,7 +14,7 @@ Table of contents
 Webapp
 ------
 
-clickcount web app sources are located in salt/clickcount/sources folder.
+clickcount web app sources are located into salt/clickcount/sources folder.
 web app uses redis server for caching.
 redis server host can be configured manually into salt/clickcount/sources/src/main/resources/config.properties file
 
@@ -38,7 +38,7 @@ mvn clean package
 Pipeline 
 --------
 
-In order to build and deploy click count web app automatically in staging and production steps are described below : 
+In order to build and deploy click count web app automatically in staging and production modes steps are described below : 
 - Install salt utils (if not found).
 - Install dependencies : java 8 and maven (if not found).
 - Install (if not found) and start tomcat servlet container (if not running)
