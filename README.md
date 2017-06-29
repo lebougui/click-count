@@ -3,7 +3,42 @@
 
 Salt tree states for click count web app pipeline automation.
 
-Pipeline steps are described below :
+Table of contents
+=================
+  
+  * [1. About web app ](#webapp)
+  * [2. CI/CD pipeline execution ](#pipeline)
+  * [3. How to debug pipeline](#debug)
+
+
+Webapp
+------
+
+clickcount web app sources are located in salt/clickcount/sources folder.
+web app uses redis server for caching.
+redis server host can be configured manually into salt/clickcount/sources/src/main/resources/config.properties file
+
+```
+cat salt/clickcount/sources/src/main/resources/config.properties
+
+#Staging: 35.157.234.38
+#Production: 35.158.164.55
+redis.host=35.157.234.38
+
+```
+
+Use command below to build it manually :
+
+```
+mvn clean package
+
+```
+
+
+Pipeline 
+--------
+
+In order to build and deploy click count web app automatically in staging and production steps are described below : 
 - Install salt utils (if not found).
 - Install dependencies : java 8 and maven (if not found).
 - Install (if not found) and start tomcat servlet container (if not running)
@@ -17,20 +52,11 @@ Pipeline steps have been tested on Ubuntu 16 and CentOS 7.
 If an issue occurs during the pipeline execution you can validate steps using an Ubuntu 16 docker container.
 
 
-Table of contents
-=================
-
-  * [1. CI/CD pipeline execution ](#pipeline)
-  * [2. How to debug pipeline](#debug)
-
-
-Pipeline 
---------
 Execute pipeline script :
 
 ```
 
-# sudo bash -x ./pipeline.sh
+# sudo ./pipeline.sh
 
 ...
 
