@@ -1,10 +1,14 @@
 #! /bin/bash
 
-curl -L https://bootstrap.saltstack.com -o /tmp/bootstrap_salt.sh
-chmod +x /tmp/bootstrap_salt.sh
-/tmp/bootstrap_salt.sh
+salt-call --version
+if [ "$?" != 0 ]
+then
+    curl -L https://bootstrap.saltstack.com -o /tmp/bootstrap_salt.sh
+    chmod +x /tmp/bootstrap_salt.sh
+    /tmp/bootstrap_salt.sh
 
-systemctl stop salt-minion
+    systemctl stop salt-minion
+fi
 
 cp -rvf * /srv/.
 
