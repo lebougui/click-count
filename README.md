@@ -27,7 +27,7 @@ redis:
 
 ```
 
-To start redis server locallly executed this command (docker is required)
+To start redis server locallly execute this command (docker is required)
 
 ```
 sudo docker run --rm  -p 6379:6379 --name redis-test redis
