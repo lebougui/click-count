@@ -5,11 +5,45 @@ Salt tree states for click count web app pipeline automation.
 
 Table of contents
 =================
-  
-  * [1. About web app ](#webapp)
-  * [2. CI/CD pipeline execution ](#pipeline)
-  * [3. How to debug pipeline](#debug)
+    
+  * [1. About redis ](#redis)
+  * [2. About web app ](#webapp)
+  * [3. CI/CD pipeline execution ](#pipeline)
+  * [2. How to debug pipeline](#debug)
 
+
+Redis
+-----
+redis servers can be configured directly into salt pillars
+
+```
+cat pillar/clickcount/init.sls 
+
+redis:
+ #staging: "35.157.234.38"
+ #production: "35.158.164.55"
+ staging: "127.0.0.1"
+ production: "127.0.0.1"
+
+```
+
+To start redis server locallly executed this command (docker is required)
+
+```
+sudo docker run --rm  -p 6379:6379 --name redis-test redis
+```
+
+To check if redis server is well configured execute this command
+
+```
+#redis-cli -h 127.0.0.1 -p 6379 ping
+PONG
+#
+
+#redis-cli ping
+PONG
+#
+```
 
 Webapp
 ------
